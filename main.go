@@ -7,7 +7,12 @@ import (
 
 func main() {
 	r := gin.Default()
+
 	r.GET("/user/:name/*action", handler.Nama)
+	// soal 1
+	r.GET("/item", handler.ItemHandler)
+	// soal 2
+	r.GET("/id/:id/produk", handler.ItemhandlerID)
 	// soal 2, 5 query string
 	r.GET("/product", handler.ProductHandler)
 	// soal 3, 5 query param

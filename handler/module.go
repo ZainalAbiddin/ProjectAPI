@@ -51,3 +51,41 @@ func ProductSmartphone(c *gin.Context) {
 		"time":        time.Now(),
 	})
 }
+
+// contoh soal 1
+// localhost:8080/item?judul=filosofi-teras&harga=76000
+func ItemHandler(c *gin.Context) {
+	judul := c.Query("judul")
+	harga := c.Query("harga")
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":   "ini buku",
+		"item name": judul,
+		"price":     harga,
+		"time":      time.Now(),
+	})
+}
+
+// contoh Soal 2
+// localhost:8080/id/2/product?judul="tv"&harga=400000
+// beda parametr vs query
+// parameter langsung dituluis dalam product/param/
+// query harus ditulus ?=query&query
+func ItemhandlerID(c *gin.Context) {
+	id := c.Param("id")
+	title := c.Query("judul")
+	price := c.Query("harga")
+	c.JSON(http.StatusOK, gin.H{
+		"id":           id,
+		"message":      "item name",
+		"product name": title,
+		"price":        price,
+	})
+}
+
+func Welcome(c *gin.Context) {
+	firstname := c.DefaultQuery("firstname", "Guest")
+	lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
+
+	c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
+}
